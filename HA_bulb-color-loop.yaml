@@ -1,0 +1,32 @@
+blueprint:
+  name: Palette Loop
+  description: ''
+  domain: automation
+  input:
+    cl_light:
+      name: Palette Loop
+      description: 'Choose Device entity to Loop'
+      selector:
+        target:
+          entity:
+            domain: light
+
+variables:
+  colors: |-
+    {{ [[33,80,162],[29,57,105],[38,93,90],[91,192,136],[247,210,70],[228,145,53]] }}
+trigger:
+  - platform: time_pattern
+    hours: '*'
+    minutes: '*'
+    seconds: '/5'
+
+action:
+  - delay:
+    milliseconds: '{{ range(0,5000) | random}}'
+  - service: light.turn_on
+    data_template:
+      rgb_color: '{{ colors[(range(0,5) | random)] }}'
+      transition: 2
+    target: !input cl_light
+
+mode: single
