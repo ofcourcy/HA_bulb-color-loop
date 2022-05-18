@@ -14,7 +14,7 @@ blueprint:
 variables:
   colors: |-
     {{ [[0,200,150],[33,80,162],[91,255,110],
-    [247,210,70],[228,145,53]] }}
+        [247,210,70],[228,145,53]] }}
 trigger:
   - platform: time_pattern
     hours: '*'
