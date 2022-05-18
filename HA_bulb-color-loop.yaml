@@ -4,7 +4,7 @@ blueprint:
   domain: automation
   input:
     cl_light:
-      name: Palette Loop
+      name: Palette Loop Light
       description: 'Choose Device entity to Loop'
       selector:
         target:
@@ -23,7 +23,7 @@ trigger:
 
 action:
   - delay:
-    milliseconds: '{{ range(0,5000) | random}}'
+      milliseconds: '{{ range(0,5000) | random}}'
   - service: light.turn_on
     data_template:
       rgb_color: '{{ colors[(range(0,5) | random)] }}'
